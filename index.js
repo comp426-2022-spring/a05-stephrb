@@ -1,5 +1,4 @@
 // Place your server entry point code here
-import { coinFlip, coinFlips, countFlips, flipACoin } from './src/utils/coin.mjs';
 import minimist from 'minimist';
 const args = minimist(process.argv.slice(2));
 
@@ -29,6 +28,7 @@ import express from 'express';
 import db from './src/services/database.js'
 import morgan from 'morgan';
 import fs from 'fs'
+import coinRouter from './src/routes/coinRouter.js'
 
 // Define app using express
 let app = express()
@@ -86,42 +86,7 @@ if (args.debug) {
         throw new Error('Error Test Successful');
     });
 }
-
-app.get('/app/', (req, res) => {
-    // Respond with status 200
-        res.statusCode = 200;
-        res.statusMessage = 'OK';
-        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-        res.end(res.statusCode+ ' ' +res.statusMessage)
-    });
-
-app.get('/app/flip/', (req, res) => {
-    res.statusCode = 200
-    const json = { "flip" : coinFlip() }
-    res.status(res.statusCode)
-    res.setHeader('Content-Type', 'application/json')
-    res.json(json)
-    
-});
-
-app.get('/app/flips/:number', (req, res) => {
-    res.statusCode = 200
-    const raw = coinFlips(req.params.number || 1)
-    const summary = countFlips(raw)
-    const json = {
-        "raw": raw,
-        "summary": summary
-    }
-    res.setHeader('Content-Type', 'application/json')
-    res.json(json)
-})
-
-app.get('/app/flip/call/:call', (req, res) => {
-    res.statusCode = 200
-    const json = flipACoin(req.params.call)
-    res.setHeader('Content-Type', 'application/json')
-    res.json(json)
-})
+app.use(coinRouter)
 app.use(function(req, res){
     res.status(404).send('404 NOT FOUND')
 });
