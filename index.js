@@ -53,10 +53,10 @@ if (args.log == true) {
     const WRITESTREAM = fs.createWriteStream('./data/log/access.log', { flags: 'a' });
     // set up middleware
     app.use(morgan('combined', { stream: WRITESTREAM }));
+    
+    // Calls middleware that inserts new log into the db
+    app.use(log)
 }
-
-// Calls middleware that inserts new log into the db
-app.use(log)
 
 // if debug, return access log
 if (args.debug) {

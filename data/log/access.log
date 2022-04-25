@@ -1,1 +1,4 @@
 // This is where an access log would be created
+::1 - - [25/Apr/2022:20:43:55 +0000] "GET /app/log/access HTTP/1.1" 200 2136 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+::1 - - [25/Apr/2022:20:44:55 +0000] "GET /app/log/access HTTP/1.1" 200 2441 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+::1 - - [25/Apr/2022:20:44:56 +0000] "GET /app/log/access HTTP/1.1" 200 2746 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
