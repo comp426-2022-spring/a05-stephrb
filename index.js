@@ -50,7 +50,7 @@ const server = app.listen(port, () => {
 
 // if log is true create a log
 if (args.log == true) {
-    const WRITESTREAM = fs.createWriteStream('access.log', { flags: 'a' });
+    const WRITESTREAM = fs.createWriteStream('./data/log/access.log', { flags: 'a' });
     // set up middleware
     app.use(morgan('combined', { stream: WRITESTREAM }));
 }
