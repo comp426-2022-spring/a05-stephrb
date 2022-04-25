@@ -25,10 +25,12 @@ if(args.help||args.h){
 
 // other imports
 import express from 'express';
-import db from './src/services/database.js'
 import morgan from 'morgan';
 import fs from 'fs'
 import coinRouter from './src/routes/coinRouter.js'
+import debugRouter from './src/routes/debugRouter.js'
+import { defaultEndpoint } from './src/middleware/default.js'
+import { log } from './src/middleware/log.js'
 
 // Define app using express
 let app = express()
@@ -53,40 +55,17 @@ if (args.log == true) {
     app.use(morgan('combined', { stream: WRITESTREAM }));
 }
 
-app.use((req, res, next) => {
-    let logData = {
-        remoteaddr: req.ip,
-        remoteuser: req.user,
-        time: Date.now(),
-        method: req.method,
-        url: req.url,
-        protocol: req.protocol,
-        httpversion: req.httpVersion,
-        status: res.statusCode,
-        referer: req.headers['referer'],
-        useragent: req.headers['user-agent']
-    }
-    const stmt = db.prepare('INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    const info = stmt.run(logData.remoteaddr, logData.remoteuser, logData.time, logData.method, logData.url, logData.protocol, logData.httpversion, logData.status, logData.referer, logData.useragent);
-    next();
-})
+// Calls middleware that inserts new log into the db
+app.use(log)
 
 // if debug, return access log
 if (args.debug) {
-    app.get("/app/log/access", (req, res) => {
-        try{
-            const logData = db.prepare('SELECT * FROM accesslog').all();
-            res.status(200).json(logData);
-        } catch(e){
-            console.error(e);
-        }
-    })
-
-    app.get("/app/error", (req, res) => {
-        throw new Error('Error Test Successful');
-    });
+    // Router with all debug endpoints
+    app.use(debugRouter)
 }
+
+// Router with all coin endpoints
 app.use(coinRouter)
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-});
+
+// default 404 endpoint
+app.use(defaultEndpoint);
