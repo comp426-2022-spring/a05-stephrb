@@ -39,7 +39,7 @@ function activateGuess() {
 const coin = document.getElementById("coin");
 coin.addEventListener("click", flipCoin)
 function flipCoin() {
-    const request = 'http://localhost:5000/app/flip'
+    const request = 'http://localhost:5000/app/flip/'
     fetch(request)
     .then(response => {return response.json()})
     .then(function (res) {
