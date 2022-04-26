@@ -255,8 +255,6 @@ Keep-Alive: timeout=5
 
 ### /app/error/ (GET)
 
-_Not yet implemented_
-
 #### Request cURL
 
 ```
