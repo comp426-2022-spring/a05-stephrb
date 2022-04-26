@@ -3,6 +3,8 @@ div.hidden {
 }
 
 div.active {
+  margin: auto;
+  padding: auto;
   border: 5px solid red;
 }
 

@@ -58,6 +58,7 @@ async function flipCoins() {
     const number = document.getElementById("number").value
     try {
         const flips = await sendFlips({ url, number });
+        console.log(flips)
         const heads = flips.summary.heads || 0
         const tails = flips.summary.tails || 0
         document.getElementById("heads").innerHTML = "Heads: " + heads;
@@ -74,7 +75,6 @@ async function flipCoins() {
             li.appendChild(img)
             newUl.appendChild(li)
         }
-        console.log(newUl)
         newUl.id = "resultList"
         ul.replaceWith(newUl)
     } catch (error) {
@@ -95,7 +95,62 @@ async function sendFlips({ url, number }) {
     const response = await fetch(url, options);
     return response.json()
 }
-    
-// Enter number and press button to activate coin flip series
 
 // Guess a flip by clicking either heads or tails button
+const tailsCall = document.getElementById("tailsCall")
+tailsCall.addEventListener("click", callTails)
+async function callTails() {
+    const endpoint = "app/flip/call/"
+	const url = document.baseURI+endpoint
+    const call = "tails"
+    try{
+        const result = await sendCall({url, call})
+        console.log(result)
+        updateResults(result)
+    }catch(error){
+        console.log(error)
+    }
+}
+
+const headsCall = document.getElementById("headsCall")
+headsCall.addEventListener("click", callHeads)
+async function callHeads() {
+    const endpoint = "app/flip/call/"
+	const url = document.baseURI+endpoint
+    const call = "heads"
+    try{
+        const result = await sendCall({url, call})
+        console.log(result)
+        updateResults(result)
+    }catch(error){
+        console.log(error)
+    }
+
+}
+
+// Call data sender
+async function sendCall({url, call}) {
+    const callJson = {"guess": call}
+    const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(callJson),
+      }
+    const response = await fetch(url, options);
+    return response.json()
+}
+
+// Function to update results html data
+function updateResults(result) {
+    const callResult = document.getElementById("callResult")
+    callResult.src = "./assets/img/" + result.call + ".png"
+
+    const flipResult = document.getElementById("flipResult")
+    flipResult.src = "./assets/img/" + result.flip + ".png"
+
+    const winOrLose = document.getElementById("winOrLose")
+    winOrLose.innerText = result.result
+
+}
