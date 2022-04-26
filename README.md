@@ -254,7 +254,6 @@ Keep-Alive: timeout=5
 ```
 
 ### /app/error/ (GET)
-
 #### Request cURL
 
 ```
