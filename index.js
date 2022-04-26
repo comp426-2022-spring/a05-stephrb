@@ -41,6 +41,8 @@ const port = args.port || process.env.port || 5000
 // Make Express use its own built-in body parser for both urlencoded and JSON body data.
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Serve static HTML files
 app.use(express.static('./public')) 
 
 // starts server
