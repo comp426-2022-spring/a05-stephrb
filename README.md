@@ -237,7 +237,16 @@ curl http://localhost:5000/app/log/access
 #### Response body
 
 ```
-[{"id":1,"remoteaddr":"::1","remoteuser":null,"time":"1650939499400.0","method":"GET","url":"/app/log/access","protocol":"http","httpversion":1.1,"status":200,"referer":null,"useragent":"curl/7.74.0"}]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Error: Error Test Successful<br> &nbsp; &nbsp;at error (file:///C:/Users/Stephen%20Buck/Documents/comp426/a05-stephrb/src/middleware/debugMiddleware.js:13:11)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\layer.js:95:5)<br> &nbsp; &nbsp;at next (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\route.js:137:13)<br> &nbsp; &nbsp;at Route.dispatch (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\layer.js:95:5)<br> &nbsp; &nbsp;at C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:281:22<br> &nbsp; &nbsp;at Function.process_params (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:341:12)<br> &nbsp; &nbsp;at next (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:275:10)<br> &nbsp; &nbsp;at Function.handle (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:174:3)<br> &nbsp; &nbsp;at router (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:47:12)</pre>
+</body>
+</html>
 ```
 
 #### Response headers
@@ -266,16 +275,7 @@ curl http://localhost:5000/app/error
 #### Response body
 
 ```
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Error</title>
-</head>
-<body>
-<pre>Error: Error Test Successful<br> &nbsp; &nbsp;at error (file:///C:/Users/Stephen%20Buck/Documents/comp426/a05-stephrb/src/middleware/debugMiddleware.js:13:11)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\layer.js:95:5)<br> &nbsp; &nbsp;at next (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\route.js:137:13)<br> &nbsp; &nbsp;at Route.dispatch (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\layer.js:95:5)<br> &nbsp; &nbsp;at C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:281:22<br> &nbsp; &nbsp;at Function.process_params (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:341:12)<br> &nbsp; &nbsp;at next (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:275:10)<br> &nbsp; &nbsp;at Function.handle (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:174:3)<br> &nbsp; &nbsp;at router (C:\Users\Stephen Buck\Documents\comp426\a05-stephrb\node_modules\express\lib\router\index.js:47:12)</pre>
-</body>
-</html>
+[{"id":1,"remoteaddr":"::1","remoteuser":null,"time":"1650939499400.0","method":"GET","url":"/app/log/access","protocol":"http","httpversion":1.1,"status":200,"referer":null,"useragent":"curl/7.74.0"}]
 ```
 
 #### Response headers
